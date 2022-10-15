@@ -20,7 +20,8 @@ public class PlayerAnimationController
         anim.Play("Jump");
     }
 
-    public void AttackStandAnimation() { }
-
-    public void AttackRunAnimation() { }
+    public void AttackAnimation() 
+    {
+        anim.Play("Attack");
+    }
 }

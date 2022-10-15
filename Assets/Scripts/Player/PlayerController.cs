@@ -13,12 +13,14 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rgBody;
     private bool dirToRight;
 
+    PlayerAttackController _attackController;
     public PlayerAnimationController _animationController;
 
     // Start is called before the first frame update
     void Start()
     {
         rgBody = GetComponent<Rigidbody2D>();
+        _attackController = GetComponent<PlayerAttackController>(); 
     }
 
     // Update is called once per frame
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     void Idle(float x)
     {
-        if(x == 0 && onTheGround)
+        if(x == 0 && !_attackController.attacking && onTheGround)
         {
             _animationController.IdleAnimation();
         }
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!Input.GetKey(KeyCode.LeftShift))
         {
-            if((x > 0 || x < 0) && onTheGround) _animationController.RunAnimation();
+            if((x > 0 || x < 0) && !_attackController.attacking && onTheGround) _animationController.RunAnimation();
 
             rgBody.velocity = new Vector2(walkSpeed * x, rgBody.velocity.y);
         }
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            if ((x > 0 || x < 0) && onTheGround) _animationController.RunAnimation();
+            if ((x > 0 || x < 0) && !_attackController.attacking && onTheGround) _animationController.RunAnimation();
 
             rgBody.velocity = new Vector2(sprintSpeed * x, rgBody.velocity.y);
         }
