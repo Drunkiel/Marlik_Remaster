@@ -3,11 +3,11 @@ using UnityEngine;
 public class TriggerController : MonoBehaviour
 {
     public bool isTriggered;
-    public string tag = "";
+    public string tagToFind = "";
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag(tag))
+        if (collider.CompareTag(tagToFind))
         {
             isTriggered = true;
         }
@@ -15,7 +15,7 @@ public class TriggerController : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.CompareTag(tag))
+        if (collider.CompareTag(tagToFind))
         {
             isTriggered = false;
         }
