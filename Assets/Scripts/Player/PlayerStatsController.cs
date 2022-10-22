@@ -24,7 +24,6 @@ public class PlayerStatsController : MonoBehaviour
     {
         if (health <= 0)
         {
-            _loadingScreen.StartCoroutine("StartLoading", "Zgin¹³eœ/aœ");
             Death();
         }
     }

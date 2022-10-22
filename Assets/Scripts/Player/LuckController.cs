@@ -12,7 +12,7 @@ public class LuckController : MonoBehaviour
 
     public void DrawLuck()
     {
-        todaysLuck = Random.RandomRange(0, 4);
+        todaysLuck = Random.Range(0, 4);
 
         UpdateData();
     }
