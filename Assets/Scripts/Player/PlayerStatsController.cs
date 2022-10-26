@@ -28,25 +28,37 @@ public class PlayerStatsController : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Death();
+        }
+    }
+
+    public void Heal(int amountOfHP)
+    {
+        if((health + amountOfHP) > maxHealth)
+        {
+            health += (health + amountOfHP) - maxHealth;
+        }
+        else
+        {
+            health += amountOfHP;
+        }
+    }
+
+    public void Rest()
+    {
+        Heal(1000);
+    }
+
     void Death()
     {
         _loadingScreen.StartCoroutine("StartLoading", "Zgin¹³eœ/aœ");
         transform.position = new Vector3(0, 0, 0);
         health = maxHealth;
-    }
-
-    public void Rest()
-    {
-        health = maxHealth;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if(health <= 0)
-        {
-            Death();
-        }
     }
 }

@@ -6,12 +6,14 @@ public class StatueController : MonoBehaviour
 
     TriggerController _triggerController;
     InteractionObject _interactionObject;
+    PlayerStatsController _playerStatsController;
 
     // Start is called before the first frame update
     void Start()
     {
         _triggerController = GetComponent<TriggerController>();
         _interactionObject = GetComponent<InteractionObject>();
+        _playerStatsController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsController>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,8 @@ public class StatueController : MonoBehaviour
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = statueOnSprite;
+
+        _playerStatsController.Heal(Mathf.RoundToInt(_playerStatsController.maxHealth * 0.1f));
 
         _interactionObject.canBeInteracted = false;
     }
