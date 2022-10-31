@@ -28,9 +28,9 @@ public class PlayerStatsController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int dealDamage)
     {
-        health -= damage;
+        health -= dealDamage;
 
         if (health <= 0)
         {

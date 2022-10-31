@@ -8,6 +8,7 @@ public class BuyItemController : MonoBehaviour
     public GameObject soldItem;
 
     public TMP_Text textToShow;
+    public GameObject pickedItem;
 
     PlayerStatsController _playerStatsController;
     SpawnItem _spawnItem;
@@ -33,6 +34,7 @@ public class BuyItemController : MonoBehaviour
             _playerStatsController.money -= price;
             _spawnItem.item = soldItem;
             _spawnItem.SpawnPickedItem();
+            pickedItem.GetComponent<ItemSelector>().isBougth = true;
         }
     }
 }
