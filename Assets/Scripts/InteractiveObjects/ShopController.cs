@@ -15,5 +15,6 @@ public class ShopController : MonoBehaviour
     void Update()
     {
         if (_triggerController.isTriggered && Input.GetKeyDown(KeyCode.E)) _openCloseUI.OpenClose();
+        if (_openCloseUI.isOpen && !_triggerController.isTriggered) _openCloseUI.OpenClose();
     }
 }
