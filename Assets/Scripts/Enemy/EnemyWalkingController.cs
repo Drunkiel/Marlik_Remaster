@@ -64,7 +64,19 @@ public class EnemyWalkingController : MonoBehaviour
     void FollowPlayer(Transform player)
     {
         Vector2 diffrence = new Vector2(player.position.x - gameObject.transform.position.x, transform.position.y);
-        rgBody.velocity = diffrence * (_statsController.walkSpeed / 2);
+
+        _statsController.walkSpeed = 1;
+
+        if (diffrence.x > 0)
+        {
+            if (!dirToRight) Flip();
+            rgBody.velocity = new Vector2(_statsController.walkSpeed, rgBody.velocity.y);
+        }
+        else
+        {
+            if (dirToRight) Flip();
+            rgBody.velocity = new Vector2(-_statsController.walkSpeed, rgBody.velocity.y);
+        }
     }
 
     void Flip()
