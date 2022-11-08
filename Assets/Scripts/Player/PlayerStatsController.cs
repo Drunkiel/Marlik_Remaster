@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class PlayerStatsController : MonoBehaviour
 {
+    [Header("Health")]
     public int health;
     public int maxHealth;
 
+    [Header("Attack")]
     public int damage;
+    public float attackSpeed;
+    public float attackRange;
 
+    [Header("Other")]
     public int level;
-
     public int money;
 
     public LoadingScreen _loadingScreen;
@@ -52,13 +56,13 @@ public class PlayerStatsController : MonoBehaviour
 
     public void Rest()
     {
-        Heal(1000);
+        Heal(maxHealth);
     }
 
     void Death()
     {
         _loadingScreen.StartCoroutine("StartLoading", "Zgin¹³eœ/aœ");
-        transform.position = new Vector3(0, 0, 0);
-        health = maxHealth;
+        transform.position = new Vector3(-2.8f, -3, 0);
+        Rest();
     }
 }
