@@ -2,17 +2,23 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    public float cooldown;
     public bool readyToAttack;
     public bool attacking;
+    private float cooldown;
+
+    [Header("Attack requirements")]
+    public Transform attackPoint;
+    public LayerMask mask;
 
     PlayerController _playerController;
+    PlayerStatsController _statsController;
     public PlayerAnimationController _animationController;
 
     // Start is called before the first frame update
     void Start()
     {
         _playerController = GetComponent<PlayerController>();
+        _statsController = GetComponent<PlayerStatsController>();
     }
 
     // Update is called once per frame
@@ -23,10 +29,20 @@ public class PlayerAttackController : MonoBehaviour
 
     void Attack()
     {
-        if (_playerController.onTheGround && Input.GetKeyDown(KeyCode.Mouse0))
+        if (_playerController.onTheGround && Input.GetKeyDown(KeyCode.Mouse0) && readyToAttack)
         {
             attacking = true;
             _animationController.AttackAnimation();
+
+            //Detecting player
+            Collider2D[] collision = Physics2D.OverlapCircleAll(attackPoint.position, _statsController.attackRange, mask);
+
+            //Do damage to player
+            foreach (Collider2D hited in collision)
+            {
+                hited.TryGetComponent<EnemyStatsController>(out EnemyStatsController enemyStats);
+                enemyStats.TakeDamage(_statsController.damage);
+            }
         }
     }
 
@@ -39,7 +55,7 @@ public class PlayerAttackController : MonoBehaviour
             if(cooldown <= 0)
             {
                 readyToAttack = true;
-                cooldown = 0.5f;
+                cooldown = _statsController.attackSpeed;
             }
             else
             {
@@ -52,6 +68,7 @@ public class PlayerAttackController : MonoBehaviour
         }
     }
 
+    //For animation
     public void StopAttack()
     {
         readyToAttack = false;
