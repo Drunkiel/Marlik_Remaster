@@ -30,14 +30,14 @@ public class EnemyWalkingController : MonoBehaviour
 
     void RandomWalk()
     {
-        if(walkTime <= 0)
+        if (walkTime <= 0)
         {
             int value = Random.Range(0, 4);
 
             if (value > 0)
             {
                 Flip();
-                _statsController.walkSpeed = 1; 
+                _statsController.walkSpeed = 1;
             }
             else _statsController.walkSpeed = 0;
 

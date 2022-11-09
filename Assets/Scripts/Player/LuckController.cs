@@ -1,14 +1,20 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class LuckController : MonoBehaviour
 {
+    public static LuckController instance;
+
     public int todaysLuck;
     public Sprite[] luckStars;
     public TMP_Text luckText;
 
     public SpriteRenderer luckyImage;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     public void DrawLuck()
     {

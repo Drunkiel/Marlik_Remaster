@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     {
         _statsController = GetComponent<EnemyStatsController>();
         _attackController = GetComponent<EnemyAttackController>();
-        _walkingController = GetComponent<EnemyWalkingController>();  
+        _walkingController = GetComponent<EnemyWalkingController>();
         _triggerController = GetComponent<TriggerController>();
         CheckLuck();
     }
