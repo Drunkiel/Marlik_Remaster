@@ -18,7 +18,8 @@ Assets/[Ss]ettings/
 Assets/[Ss]cenes
 Assets/[Aa]nimations
 /[Uu]serSettings/
-Assets/[Tt]extMeshPro/
+Assets/[Tt]extMesh Pro/
+Assets/[Tt]hirdparty/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
