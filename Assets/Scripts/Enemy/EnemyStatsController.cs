@@ -6,6 +6,13 @@ public class EnemyStatsController : MonoBehaviour
     public float walkSpeed;
     public int damage;
 
+    DeathReward _deathReward;
+
+    void Start()
+    {
+        _deathReward = GetComponent<DeathReward>();
+    }
+
     public void TakeDamage(int value)
     {
         health -= value;
@@ -18,6 +25,7 @@ public class EnemyStatsController : MonoBehaviour
 
     void Death()
     {
+        _deathReward.GiveReward();
         Destroy(gameObject);
     }
 }
